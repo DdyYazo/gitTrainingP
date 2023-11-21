@@ -1,6 +1,6 @@
 body
 {
-    color: deeppink;
+    color: rgb(20, 188, 255);
     text-align: center;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -8,7 +8,8 @@ body
 form {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 100%; /* Cambia el ancho a 100% */
+    max-width: 300px; /* Añade un ancho máximo para evitar que el formulario sea demasiado ancho en pantallas grandes */
     margin: 0 auto;
 }
 
@@ -23,6 +24,8 @@ form input[type="text"], form input[type="email"], form textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 100%; /* Cambia el ancho a 100% */
+    box-sizing: border-box; /* Asegura que el padding y el borde estén incluidos en el ancho total */
 }
 
 /* Estilos para el botón de envío del formulario */
@@ -34,6 +37,7 @@ form input[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 100%; /* Cambia el ancho a 100% */
 }
 
 form input[type="submit"]:hover {
