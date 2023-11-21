@@ -9,8 +9,5 @@ No se que chuchas se guardara en esta prueba atomica pero bueno
 
 Ahora hare una tercera prueba
 
-voy a cambiar esto
-
-
 
 ```
