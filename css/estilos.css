@@ -4,3 +4,38 @@ body
     text-align: center;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+/* Estilos generales para el formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+}
+
+/* Estilos para las etiquetas del formulario */
+form label {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+/* Estilos para los campos de entrada del formulario */
+form input[type="text"], form input[type="email"], form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilos para el botón de envío del formulario */
+form input[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
