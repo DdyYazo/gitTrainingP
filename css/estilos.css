@@ -2,7 +2,7 @@ body
 {
     color: rgb(20, 188, 255);
     text-align: center;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Courier New', Courier, monospace
 }
 /* Estilos generales para el formulario */
 form {
