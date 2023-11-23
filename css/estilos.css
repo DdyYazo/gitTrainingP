@@ -4,6 +4,15 @@ body
     text-align: center;
     font-family:'Courier New', Courier, monospace
 }
+
+#cabecera {
+    background-color: #7FFFD4; /* Color de fondo azul agua marina */
+    color: rgb(10, 6, 6); /* Color de texto blanco */
+    font-size: larger;
+    font-weight: bold;
+    padding: 10px; /* Reduce el espaciado interno para hacer el fondo más pequeño */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Aumenta la sombra para que sea más visible */
+}
 /* Estilos generales para el formulario */
 form {
     display: flex;
