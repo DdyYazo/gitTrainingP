@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ```sh```
 Esta es una prueba de archivo de texto 
 
@@ -11,3 +12,7 @@ Ahora hare una tercera prueba
 
 
 ```
+=======
+# gitCourseFunds
+El proyecto de practica del curso de Git y GitHub
+>>>>>>> 236292b5a2df301d2c23d71b19f98e73236404de
