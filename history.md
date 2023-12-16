@@ -1,5 +1,6 @@
-<<<<<<< HEAD
-```sh```
+```Anotation```
+>[!NOTE]
+> Anotación de prueba
 Esta es una prueba de archivo de texto 
 
 Para subir a un repositorio, 
@@ -12,7 +13,3 @@ Cambio nuevo
 
 
 ```
-=======
-# gitCourseFunds
-El proyecto de practica del curso de Git y GitHub
->>>>>>> 236292b5a2df301d2c23d71b19f98e73236404de
