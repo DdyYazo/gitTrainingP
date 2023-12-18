@@ -9,28 +9,31 @@
 </head>
 
 <body>
-    <div class="div --container">
-        <div id="cabecera">Cabecera
-            <span id="tagline">Tu blog maestro</span>
+    <div id="container">
+        <div id="cabecera">
+            <img id="imagen-dragon" src="imagenes/dragon.png" alt="Imagen de un dragón">
+            gitTraininP
+            <span id="tagline">Tu blog de cabecera</span>
         </div>
+        <div id="post">
+            <h1>Prueba</h1>
+            <p>Hola esto es una prueba para git</p>
+            <p>Este es un nuevo parrafo de prueba con el fin de evaluar el comportamiento de las ramas al momento de
+                fusionarse con el git merge</p>
+            <p>Ahorita si se va armar el pedo</p>
+            <form>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
 
-        <h1>Prueba</h1>
-        <p>Hola esto es una prueba para git</p>
-        <p>Este es un nuevo parrafo de prueba con el fin de evaluar el comportamiento de las ramas al momento de
-            fusionarse con el git merge</p>
-        <p>Ahorita si se va armar el pedo</p>
-        <form>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
 
-            <label for="mensaje">Mensaje:</label>
-            <textarea id="mensaje" name="mensaje" required></textarea>
-
-            <input type="submit" value="Enviar">
-        </form>
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
     </div>
 </body>
 

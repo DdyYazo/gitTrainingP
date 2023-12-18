@@ -1,18 +1,62 @@
 body
 {
-    color: rgb(20, 130, 255);
+    background-color: gray;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 }
+#container {
+    background-color: white;
+    width: 70%;
+    margin: auto;
+}
+
 
 #cabecera {
     background-color: #7FFFD4; /* Color de fondo azul agua marina */
     color: rgb(10, 6, 6); /* Color de texto blanco */
-    font-size: larger;
-    font-weight: bold;
+    font-size: 2em; /* Tamaño de la fuente 1.5 veces el tamaño normal */
+    font-weight:bold;
     padding: 10px; /* Reduce el espaciado interno para hacer el fondo más pequeño */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Aumenta la sombra para que sea más visible */
+    display: flex; /* Añade esta línea */
+    align-items: center; /* Añade esta línea para alinear verticalmente los elementos */
 }
+#tagline {
+    margin-left: 20px; /* Ajusta la distancia a tu preferencia */
+    font-weight:200;
+    font-size: 1em; /* Tamaño de la fuente 1 vez el tamaño normal */
+    display: flex; /* Añade esta línea */
+    align-items: center; /* Añade esta línea para alinear verticalmente los elementos */
+}
+
+#imagen-dragon {
+    float: left;
+    width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+    margin-right: 20px; /* Añade un margen a la derecha de la imagen */
+}
+/* Estilos del post */
+#post {
+    background-color: #f1f1f1;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/* Estilos del h1 dentro del post */
+#post h1 {
+    color: #333; /* Cambia el color del texto */
+    font-size: 2.5em; /* Incrementa el tamaño de la fuente */
+    margin-top: 0; /* Mantiene el margen superior en 0 */
+}
+
+/* Dale estilos a los parrafos de mi post */
+#post p {
+    color: #666; /* Cambia el color del texto */
+    font-size: 1.2em; /* Incrementa el tamaño de la fuente */
+    text-align: justify; /* Mantiene el texto justificado */
+}
+
 /* Estilos generales para el formulario */
 form {
     display: flex;
