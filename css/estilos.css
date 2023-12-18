@@ -52,3 +52,10 @@ form input[type="submit"] {
 form input[type="submit"]:hover {
     background-color: #0056b3;
 }
+#footer {
+    background-color: rgba(0, 128, 0, 0.2); /* Fondo verde con opacidad */
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
