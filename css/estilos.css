@@ -100,6 +100,7 @@ form input[type="submit"]:hover {
     background-color: rgba(0, 128, 0, 0.2); /* Fondo verde con opacidad */
     padding: 10px;
     text-align: center;
-    font-size: 14px;
-    color: #666;
+    font-size: 18px;
+    font-weight: bold;
+    color: #141212;
 }
