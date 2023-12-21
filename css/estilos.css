@@ -10,30 +10,39 @@ body
     margin: auto;
 }
 
-
 #cabecera {
     background-color: #7FFFD4; /* Color de fondo azul agua marina */
     color: rgb(10, 6, 6); /* Color de texto blanco */
-    font-size: 2em; /* Tamaño de la fuente 1.5 veces el tamaño normal */
-    font-weight:bold;
     padding: 10px; /* Reduce el espaciado interno para hacer el fondo más pequeño */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Aumenta la sombra para que sea más visible */
     display: flex; /* Añade esta línea */
     align-items: center; /* Añade esta línea para alinear verticalmente los elementos */
-}
-#tagline {
-    margin-left: 20px; /* Ajusta la distancia a tu preferencia */
-    font-weight:200;
-    font-size: 1em; /* Tamaño de la fuente 1 vez el tamaño normal */
-    display: flex; /* Añade esta línea */
-    align-items: center; /* Añade esta línea para alinear verticalmente los elementos */
+    flex-direction: row; /* Añade esta línea para que los elementos se ajusten al ancho de la pantalla */
+    justify-content: center;
+    flex-wrap: wrap	;
 }
 
+#tagline {
+    margin-left: 10px; /* Ajusta la distancia a tu preferencia */
+    font-weight:200;
+    font-size: 2em; /* Tamaño de la fuente 1 vez el tamaño normal */
+    display: flex; /* Añade esta línea */
+    align-items: center; /* Añade esta línea para alinear verticalmente los elementos */
+    order: 3; /* Añade esta línea para cambiar el orden de los elementos */
+    flex: 1 auto; /* Añade esta línea para que el elemento ocupe todo el ancho */
+}
+
+#cabecera h1 {
+    font-size: 2em; /* Cambia el tamaño de la fuente a pequeño */
+    color: #333; /* Cambia el color del texto */
+    order: 1;
+}
 #imagen-dragon {
     float: left;
-    width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+    order: 0;
+    max-width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
     height: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
-    margin-right: 20px; /* Añade un margen a la derecha de la imagen */
+    margin-right: 10px; /* Añade un margen a la derecha de la imagen */
 }
 /* Estilos del post */
 #post {
