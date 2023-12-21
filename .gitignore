@@ -1,0 +1,2 @@
+*.vscode/*
+# tambien con *.vscode/* para que no se suba la carpeta .vscode	
