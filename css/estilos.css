@@ -1,9 +1,9 @@
-body
-{
+body {
     background-color: gray;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 #container {
     background-color: white;
     width: 70%;
@@ -11,39 +11,59 @@ body
 }
 
 #cabecera {
-    background-color: #7FFFD4; /* Color de fondo azul agua marina */
-    color: rgb(10, 6, 6); /* Color de texto blanco */
-    padding: 10px; /* Reduce el espaciado interno para hacer el fondo más pequeño */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Aumenta la sombra para que sea más visible */
-    display: flex; /* Añade esta línea */
-    align-items: center; /* Añade esta línea para alinear verticalmente los elementos */
-    flex-direction: row; /* Añade esta línea para que los elementos se ajusten al ancho de la pantalla */
+    background-color: #7FFFD4;
+    /* Color de fondo azul agua marina */
+    color: rgb(10, 6, 6);
+    /* Color de texto blanco */
+    padding: 10px;
+    /* Reduce el espaciado interno para hacer el fondo más pequeño */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Aumenta la sombra para que sea más visible */
+    display: flex;
+    /* Añade esta línea */
+    align-items: center;
+    /* Añade esta línea para alinear verticalmente los elementos */
+    flex-direction: row;
+    /* Añade esta línea para que los elementos se ajusten al ancho de la pantalla */
     justify-content: center;
-    flex-wrap: wrap	;
+    flex-wrap: wrap;
 }
 
 #tagline {
-    margin-left: 10px; /* Ajusta la distancia a tu preferencia */
-    font-weight:200;
-    font-size: 2em; /* Tamaño de la fuente 1 vez el tamaño normal */
-    display: flex; /* Añade esta línea */
-    align-items: center; /* Añade esta línea para alinear verticalmente los elementos */
-    order: 3; /* Añade esta línea para cambiar el orden de los elementos */
-    flex: 1 auto; /* Añade esta línea para que el elemento ocupe todo el ancho */
+    margin-left: 10px;
+    /* Ajusta la distancia a tu preferencia */
+    font-weight: 200;
+    font-size: 2em;
+    /* Tamaño de la fuente 1 vez el tamaño normal */
+    display: flex;
+    /* Añade esta línea */
+    align-items: center;
+    /* Añade esta línea para alinear verticalmente los elementos */
+    order: 3;
+    /* Añade esta línea para cambiar el orden de los elementos */
+    flex: 1 auto;
+    /* Añade esta línea para que el elemento ocupe todo el ancho */
 }
 
 #cabecera h1 {
-    font-size: 2em; /* Cambia el tamaño de la fuente a pequeño */
-    color: #333; /* Cambia el color del texto */
+    font-size: 2em;
+    /* Cambia el tamaño de la fuente a pequeño */
+    color: #333;
+    /* Cambia el color del texto */
     order: 1;
 }
+
 #imagen-dragon {
     float: left;
     order: 0;
-    max-width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
-    height: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
-    margin-right: 10px; /* Añade un margen a la derecha de la imagen */
+    max-width: 50px;
+    /* Ajusta el tamaño de la imagen según sea necesario */
+    height: 50px;
+    /* Ajusta el tamaño de la imagen según sea necesario */
+    margin-right: 10px;
+    /* Añade un margen a la derecha de la imagen */
 }
+
 /* Estilos del post */
 #post {
     background-color: #f1f1f1;
@@ -52,26 +72,43 @@ body
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
 /* Estilos del h1 dentro del post */
 #post h1 {
-    color: #333; /* Cambia el color del texto */
-    font-size: 2.5em; /* Incrementa el tamaño de la fuente */
-    margin-top: 0; /* Mantiene el margen superior en 0 */
+    color: #333;
+    /* Cambia el color del texto */
+    font-size: 2.5em;
+    /* Incrementa el tamaño de la fuente */
+    margin-top: 0;
+    /* Mantiene el margen superior en 0 */
 }
 
 /* Dale estilos a los parrafos de mi post */
 #post p {
-    color: #666; /* Cambia el color del texto */
-    font-size: 1.2em; /* Incrementa el tamaño de la fuente */
-    text-align: justify; /* Mantiene el texto justificado */
+    color: #666;
+    /* Cambia el color del texto */
+    font-size: 1.2em;
+    /* Incrementa el tamaño de la fuente */
+    text-align: justify;
+    /* Mantiene el texto justificado */
+}
+
+/* Estilos para las imágenes */
+.miImagen {
+    width: 100%;
+    /* Ajusta el ancho al 100% del contenedor */
+    height: auto;
+    /* Ajusta la altura automáticamente para mantener la proporción de la imagen */
 }
 
 /* Estilos generales para el formulario */
 form {
     display: flex;
     flex-direction: column;
-    width: 100%; /* Cambia el ancho a 100% */
-    max-width: 300px; /* Añade un ancho máximo para evitar que el formulario sea demasiado ancho en pantallas grandes */
+    width: 100%;
+    /* Cambia el ancho a 100% */
+    max-width: 300px;
+    /* Añade un ancho máximo para evitar que el formulario sea demasiado ancho en pantallas grandes */
     margin: 0 auto;
 }
 
@@ -82,12 +119,17 @@ form label {
 }
 
 /* Estilos para los campos de entrada del formulario */
-form input[type="text"], form input[type="email"], form input[type="number"], form textarea {
+form input[type="text"],
+form input[type="email"],
+form input[type="number"],
+form textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 100%; /* Cambia el ancho a 100% */
-    box-sizing: border-box; /* Asegura que el padding y el borde estén incluidos en el ancho total */
+    width: 100%;
+    /* Cambia el ancho a 100% */
+    box-sizing: border-box;
+    /* Asegura que el padding y el borde estén incluidos en el ancho total */
 }
 
 /* Estilos para el botón de envío del formulario */
@@ -99,14 +141,17 @@ form input[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%; /* Cambia el ancho a 100% */
+    width: 100%;
+    /* Cambia el ancho a 100% */
 }
 
 form input[type="submit"]:hover {
     background-color: #0056b3;
 }
+
 #footer {
-    background-color: rgba(0, 128, 0, 0.2); /* Fondo verde con opacidad */
+    background-color: rgba(0, 128, 0, 0.2);
+    /* Fondo verde con opacidad */
     padding: 10px;
     text-align: center;
     font-size: 18px;
