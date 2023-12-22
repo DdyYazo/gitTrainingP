@@ -614,7 +614,8 @@ ssh-keygen -t rsa -b 4096 -C "davbelom@gmail.com"
 ```
 
 > [!NOTE]
-> Esta es una contribución de un repositorio Open Source 
+> Esta es una contribución de un repositorio Open Source
+>  
 > **Gracias por la contribución tan grande para mi repomind !!** 
 
 
