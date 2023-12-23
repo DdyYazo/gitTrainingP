@@ -17,6 +17,40 @@ Además de que envés de guardar los archivos completos se guardan **sólo los c
 
 Git es algo así como el `Ctrl+Z` (deshacer) de los programadores, suponiendo que el `Ctrl Z` guardara todo el **historial de modificación** de los archivos, ya que con git puedes moverte en la historia (algo así como una máquina del tiempo).
 
+# Tabla de contenidos
+- [gitTrainingP 💚💚](#gittrainingp-)
+  - [Cómo utilizar git y GitHub](#cómo-utilizar-git-y-github)
+- [Tabla de contenidos](#tabla-de-contenidos)
+  - [Flujo básico de git](#flujo-básico-de-git)
+  - [Archivos binarios y de texto plano](#archivos-binarios-y-de-texto-plano)
+  - [Diferencias de git contra otros VCS](#diferencias-de-git-contra-otros-vcs)
+    - [Ventajas de git contra otros manejadores de versiones](#ventajas-de-git-contra-otros-manejadores-de-versiones)
+  - [Operaciones principales de git](#operaciones-principales-de-git)
+  - [Commit](#commit)
+  - [Archivos trackeados](#archivos-trackeados)
+  - [Configurar el entorno de git](#configurar-el-entorno-de-git)
+    - [Branchs (Ramas)](#branchs-ramas)
+  - [Repositorio remoto (GitHub)](#repositorio-remoto-github)
+  - [Llaves públicas y privadas](#llaves-públicas-y-privadas)
+    - [Git stash](#git-stash)
+    - [Git cherry pick](#git-cherry-pick)
+  - [Forks o Bifurcaciones](#forks-o-bifurcaciones)
+  - [Trabajando con más de 1 repositorio remoto](#trabajando-con-más-de-1-repositorio-remoto)
+  - [Etiquetas, versiones](#etiquetas-versiones)
+  - [Pull request:](#pull-request)
+  - [Ignorar archivos para no subirlos al repositorio (.gitignore)](#ignorar-archivos-para-no-subirlos-al-repositorio-gitignore)
+  - [Readme.md y markdown](#readmemd-y-markdown)
+  - [Git Stash: Guardar cambios en memoria y recuperarlos después](#git-stash-guardar-cambios-en-memoria-y-recuperarlos-después)
+  - [Stashed area:](#stashed-area)
+    - [git stash](#git-stash-1)
+    - [Obtener elelmentos del stash](#obtener-elelmentos-del-stash)
+    - [Listado de elementos en el stash](#listado-de-elementos-en-el-stash)
+    - [Crear una rama con el stash](#crear-una-rama-con-el-stash)
+    - [Eliminar elementos del stash](#eliminar-elementos-del-stash)
+  - [Remendar un commit](#remendar-un-commit)
+  - [Git nunca olvida, `git reflog`](#git-nunca-olvida-git-reflog)
+  - [Comandos no documentados](#comandos-no-documentados)
+
 ## Flujo básico de git
 
 El flujo normal de git es el siguiente:
@@ -212,7 +246,7 @@ git reset --hard #
 git config --global core.editor “nano --wait”
 ```
 
-**Branchs (Ramas)**
+### Branchs (Ramas)
 
 Versiones alternas de un proyecto
 
@@ -221,6 +255,7 @@ git branch nombre
 git branch -d nombre # Eliminar rama
 git branch -D nombre # Forzar eliminado de rama
 git branch -m nombre_viejo nombre_nuevo # Cambiar nombre de la rama
+git push origin --delete nombre_viejo # Eliminar la rama del repositorio local
 git checkout #cambiar de ramas
 git checkout cambio_rama # Cambiar a la rama <cambio_rama>
 git checkout -b nueva-imagen # Crear rama <nueva-imagen> y switchear a ésta
@@ -313,7 +348,7 @@ git stash drop <numero_estado> #eliminar un stash
 git stash apply #Agrega el estado ultimo
 git stash apply <estado> #agregar stash exacto
 
-### git cherry-pick 
+### Git cherry pick 
 
 Escoger commits
 git cherry-pick [SHA1] nos permite cambiar un commit a otra rama para salvarnos la vida.
@@ -614,9 +649,8 @@ ssh-keygen -t rsa -b 4096 -C "davbelom@gmail.com"
 ```
 
 > [!NOTE]
-> Esta es una contribución de un repositorio Open Source
->  
+> Esta es una contribución de un repositorio Open Source 
+> 
 > **Gracias por la contribución tan grande para mi repomind !!** 
-
 
 ![Descripción del GIF](https://media0.giphy.com/headers/GitHub/w8ZJLtJbmuph.gif)
