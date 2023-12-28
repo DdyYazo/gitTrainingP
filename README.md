@@ -63,6 +63,12 @@ Git es algo así como el `Ctrl+Z` (deshacer) de los programadores, suponiendo qu
     - [Eliminar los archivos listados de no seguimiento de manera forzada con el parametro `-f`](#eliminar-los-archivos-listados-de-no-seguimiento-de-manera-forzada-con-el-parametro--f)
     - [Eliminar además de los archivos los directorios con el parametro `-d`](#eliminar-además-de-los-archivos-los-directorios-con-el-parametro--d)
     - [Eliminar los archivos ignorardos con el parametro`-x`](#eliminar-los-archivos-ignorardos-con-el-parametro-x)
+  - [Git cherry-pick](#git-cherry-pick-1)
+    - [Escenarios de uso de Git Cherry Pick](#escenarios-de-uso-de-git-cherry-pick)
+    - [¿Cómo funciona Git Cherry Pick? Ejemplos](#cómo-funciona-git-cherry-pick-ejemplos)
+    - [Usar el parametro `-x` para añadir una referencia al commit original](#usar-el-parametro--x-para-añadir-una-referencia-al-commit-original)
+    - [¿Cómo deshacer este comando en caso de conflicto?](#cómo-deshacer-este-comando-en-caso-de-conflicto)
+    - [Cherry pick como una mala practica](#cherry-pick-como-una-mala-practica)
   - [Remendar un commit](#remendar-un-commit)
   - [Git nunca olvida, `git reflog`](#git-nunca-olvida-git-reflog)
   - [Comandos no documentados](#comandos-no-documentados)
@@ -178,11 +184,32 @@ git config --global user.name "Tu Nombre" # Configura el nombre del usuario de g
 
 ### Llaves SSH
 
+1. **<u>Generar tus llaves SSH</u>**: Recuerda que es muy buena idea proteger tu llave privada con una contraseña.
+
 ```bash
-ssh-keygen -t rsa -b 4096 -C "email@dominio.org"
+ssh-keygen -t rsa -b 4096 -C "tu@email.com"
+```
+2. **<u>Terminar de configurar nuestro sistema.</u>**
+
+**En Windows y Linux:** -
+- Encender el “servidor” de llaves SSH de tu computadora:
+
+```bash
+eval $(ssh-agent -s)
 ```
 
+- Añadir tu llave SSH a este “servidor”:
 
+```bash
+ssh-add ~/.ruta-donde-guardaste-tu-llave-privada "en este caso ~/.ssh/llave_privada"
+```
+
+>[!IMPORTANT]
+> 
+> La adición de la llave privada debe realizarse desde la configuración global del sistema
+
+3. <u>**Agregar el cifrado completo de la llave publica en Github:**</u>
+Abrir la llave pública desde VSCode copiarla y pegarla en la sección de **SSH and GPG keys** en **GitHub**, además de agregar la representación de la llave
 
 ### git init
 
@@ -660,6 +687,72 @@ git clean -df # Fuerza la eliminación de directorios no rastreados del director
 ```bash
 git clean -x # Elimina los archivos no rastreados del directorio de trabajo
 ```
+## Git cherry-pick
+
+Git cherry-pick es un comando en Git que selecciona y aplica commits específicos de una rama o branch a otra. Todo, sin tener que hacer un merge completo. Así, podemos copiar un commit específico y aplicarlo de forma aislada en la rama de destino, conservando su historial.
+### Escenarios de uso de Git Cherry Pick
+Este comando facilita la incorporación precisa de cambios, optimizando la colaboración y el mantenimiento en proyectos de desarrollo de software. Veamos sus casos de uso.
+
+1. <u>**Colaboración en equipo:**</u>
+Antes que nada, puede ser útil implementarlo cuando diferentes miembros del equipo trabajan en áreas similares del código, pues permite seleccionar y aplicar commits específicos a cada rama, facilitando el progreso individual.
+
+2. <u>**Solución de bugs o errores:**</u>
+Cuando encuentras un error o bug, es importante solucionarlo y entregar la corrección a los usuarios lo más rápido posible. Con Git Cherry Pick, puedes aplicar rápidamente un commit de verificación en la rama principal, evitando que afecte a más usuarios.
+
+3. <u>**Deshacer cambios y recuperar commits perdidos:**</u>
+A veces, una rama de funcionalidad puede ser obstoleta y no ser fusionada con la rama principal. O puede suceder que una solicitud de extracción (pull request) sea cerrada sin ser fusionada.
+
+Git nunca pierde esos commits y, a través de comandos como `git log` y `git reflog`, **puedes encontrar y aplicar los commits utilizando <u>Git Cherry Pick</u>**.
+
+### ¿Cómo funciona Git Cherry Pick? Ejemplos
+
+Imaginemos que tienes un repositorio con el siguiente estado de las ramas:
+```bash
+a - b - c - d   Rama Principal
+         \\
+           e - f - g Rama de Características
+```
+El uso de Git Cherry Pick es bastante sencillo y se ejecuta de la siguiente manera:
+
+Primero, asegúrate de estar en la rama principal empleando el comando:
+```bash
+git checkout rama-principal.
+```
+Luego, ejecuta el siguiente comando:
+```bash
+git cherry-pick [HASH]
+```
+Aquí, `HASH` es una referencia al hash o ID del commit que deseas aplicar. Puedes encontrar la referencia del commit utilizando el comando `git log`. Supongamos que deseas usar el commit **‘f’** en la rama principal.
+
+Una vez ejecutado el comando, el historial de Git se verá así:
+
+```bash
+a - b - c - d - f   Rama Principal
+         \\
+           e - f - g Rama de Características
+```
+
+De esta forma, el commit **‘f’** se ha incorporado correctamente a la rama principal.
+
+Ademas se puede hacer cherry-pick de varios commits copiando su hash de la siguiente forma:
+```bash
+git cherry-pick [HASH1][HASH2]
+```
+### Usar el parametro `-x` para añadir una referencia al commit original
+El siguiente comando permite agregar una referencia del cherry pick que se realizo con el comando:
+```bash
+git cherry-pick [HASH] -x
+```
+### ¿Cómo deshacer este comando en caso de conflicto?
+Supongamos que estás usando GitHub para colaborar con un equipo en un proyecto y has realizado un `cherry-pick` de un `commit` de otra rama en tu rama local, pero ocurren conflictos durante este proceso y deseas detenerlo y volver al estado anterior.
+
+Por suerte, en ese caso, puedes emplear el siguiente comando.
+```bash
+git cherry-pick --abort
+```
+
+### Cherry pick como una <u>mala practica</u>
+Git Cherry Pick es un comando poderoso y conveniente que resulta especialmente útil en ciertas situaciones. Sin embargo, si abusas de él, **podría considerarse una mala práctica en Github**. Se debe utilizar correctamente y comprender sus implicaciones en el historial de cambios.
 
 ## Remendar un commit
 
