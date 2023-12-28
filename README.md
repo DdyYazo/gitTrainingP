@@ -29,7 +29,18 @@ Git es algo así como el `Ctrl+Z` (deshacer) de los programadores, suponiendo qu
   - [Commit](#commit)
   - [Archivos trackeados](#archivos-trackeados)
   - [Configurar el entorno de git](#configurar-el-entorno-de-git)
+    - [Llaves SSH](#llaves-ssh)
+    - [git init](#git-init)
+    - [git add](#git-add)
+    - [git commit](#git-commit)
+    - [Estado](#estado)
+    - [git log](#git-log)
+    - [Show](#show)
+    - [git diff](#git-diff)
+    - [git reset](#git-reset)
+    - [Cambiar el editor de código default de git](#cambiar-el-editor-de-código-default-de-git)
     - [Branchs (Ramas)](#branchs-ramas)
+    - [git rebase o merge](#git-rebase-o-merge)
   - [Repositorio remoto (GitHub)](#repositorio-remoto-github)
   - [Llaves públicas y privadas](#llaves-públicas-y-privadas)
     - [Git stash](#git-stash)
@@ -160,7 +171,7 @@ git config --global user.name "Tu Nombre" # Configura el nombre del usuario de g
 
 ```
 
-Llaves SSH
+### Llaves SSH
 
 ```bash
 ssh-keygen -t rsa -b 4096 -C "email@dominio.org"
@@ -168,7 +179,7 @@ ssh-keygen -t rsa -b 4096 -C "email@dominio.org"
 
 
 
-**git init**
+### git init
 
 Con git init creas un entorno de trabajo para git, además de la carpeta oculta .git, dónde se guardará toda la información relevante al control de versiones, es muy sencillo, en un directorio que no esté trackeado por git usa el comando `git init`
 
@@ -176,7 +187,7 @@ Con git init creas un entorno de trabajo para git, además de la carpeta oculta 
 git init #Empiezas un repositorio
 ```
 
-**git add**
+### git add
 
 Git add agrega los archivos y carpetas que elijas al staging area, que es como el espacio en memoria ram donde están los cambios que se van a subir en el futuro.
 
@@ -186,17 +197,17 @@ git add -A # Agregas todos los cambios al staging area
 git add . # Agregas los cambios de los subdirectorios de la carpeta en la que te encuentras
 ```
 
-**git commit**
+### git commit
 
 Graba los cambios que están en el `staging area` en el `repositorio`.
 
 ```bash
 git commit #Se prepara para hacer commit y abre el editor por defecto de la terminal para ponerle nombre
 git commit -m 'Descripción del commit': #Guarda los cambios en la base de datos del VCS (creando una nueva versión)
-git commit --amend:
+git commit --amend # Modifica el último commit realizado
 ```
 
-**Estado**
+### Estado
 
 Muestra el estado del working directory, muestra si hay cambios en el working directory sin agregar, o si hay algo en el staging area sin que se haya hecho un commit.
 
@@ -204,7 +215,7 @@ Muestra el estado del working directory, muestra si hay cambios en el working di
 git status
 ```
 
-**git log** 
+### git log 
 
 Te muestra el historial de los commits que has hecho
 
@@ -212,10 +223,13 @@ Te muestra el historial de los commits que has hecho
 git log # Muestra todos los commits con la información default
 git log -3 #ultimos tres commits
 git log --oneline #Resumido
-git log --oneline --graph #Te lo muestra Resumido y bonito
+git log --oneline --graph #Te lo muestra Resumido y bonito```
+git log --graph --decorate --oneline # Lo muestra en forma de arbol
+git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all 
+# Muestra el historial de commits en un gráfico con información detallada y formato personalizado considerado como un SUPERLOG
 ```
 
-**Show**
+### Show
 
 Muestra el mensaje del último commit y la diferencia textual. Es como log, pero con la diferencia de que muestra los cambios precisos que se hicieron en el commit
 
@@ -223,7 +237,7 @@ Muestra el mensaje del último commit y la diferencia textual. Es como log, pero
 git show
 ```
 
-**git diff**
+### git diff
 
 Nos compara y muestra los cambios sufridos entre los dos commits. Los id de los commit se pueden encontrar ejecutando git log.
 
@@ -232,15 +246,20 @@ git diff <referenci sha1> #
 git diff <referencia2> <referencia1> <archivo>
 ```
 
-**git reset**
+### git reset
 
 ```bash
-git reset --soft #Agrega al staging
-git reset --mixed #No lo agrega al staging
-git reset --hard # 
+git reset --soft # Mueve el HEAD a un commit específico, pero mantiene los cambios en el área de preparación o staging
+git reset --mixed # Mueve el HEAD a un commit específico y deshace los cambios en el área de preparación
+git reset --hard # Mueve el HEAD a un commit específico y descarta todos los cambios en staging que procede de dicho commit
+```
+Cabe mencionar que esto se realiza en caso que se hallan hechos commits erroneos y se desee volver a una rama especificada pero, esto requiere hacer un push forzado
+
+```bash
+git push --force aliasDelRepositorio nombreDeLaRama
 ```
 
-**Cambiar el editor de código default de git**
+### Cambiar el editor de código default de git
 
 ```bash
 git config --global core.editor “nano --wait”
@@ -260,11 +279,28 @@ git checkout #cambiar de ramas
 git checkout cambio_rama # Cambiar a la rama <cambio_rama>
 git checkout -b nueva-imagen # Crear rama <nueva-imagen> y switchear a ésta
 git merge <rama-arreglada> # mezclando la rama actual con la <rama-arreglada> 
-# Tenemos que estar en la rama output para hacer un merge o un rebase
-git merge --abort
-git rebase # hace prácticamente lo mismo que merge, cambiamos la historia de nuestro proyecto sin crear bifurcaciones del proyecto. Es mejor usar merge, 
-#Usar solo git rebase de manera local.
-
+```
+### git rebase o merge
+Tenemos que estar en la rama output para hacer un `merge` o un `rebase`
+```bash
+git merge nonbre # Especificar el nombre de la rama 
+git merge --abort # Para abortar el merge que esta en proceso
+git merge --continue # Para continuar con el proceso
+git merge --skip 
+```
+Por otro lado, `rebase` hace prácticamente lo mismo que `merge`, cambiamos la historia de nuestro proyecto sin crear bifurcaciones del proyecto. Sin embargo Es mejor usar merge, ya que **rebase se considera una mala practica** , asi mismo <u>**este debe realizarse de manera local**</u>.
+```bash
+git rebase nombre # Especificar el nombre de la rama de donde se esta trayendo el historial
+git rebase --continue # Continúa con el proceso de rebase después de resolver conflictos
+git rebase --abort # Aborta el proceso de rebase y vuelve al estado anterior
+git rebase --skip # Salta el commit actual durante un rebase
+git rebase -i numeroDelHash # Inicia un rebase interactivo a partir del commit especificado esto en caso que un reset no halla sido efectivo
+pick # En este caso se debe cambiar pick por drop para borrar los commits procedentes del commit seleccionado
+```
+`rebase` tambien permite modificar el mensaje de un commit en especifico con pero de forma interactiva con el comando:
+```bash
+git rebase -i numeroDelHash # Para verlo en un editor interactivo de vim
+pick # Luego cambiando pick por reword en la línea del commit que quieres cambiar.
 ```
 
 ## Repositorio remoto (GitHub)
@@ -317,8 +353,6 @@ Ya que agregaste tu servidor remoto `origin` puedes jalaro o empujar los cambios
   ```bash
   git push origin master
   ```
-
-
 
 ## Llaves públicas y privadas
 
