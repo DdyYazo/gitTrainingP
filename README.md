@@ -707,11 +707,11 @@ Git nunca pierde esos commits y, a través de comandos como `git log` y `git ref
 ### ¿Cómo funciona Git Cherry Pick? Ejemplos
 
 Imaginemos que tienes un repositorio con el siguiente estado de las ramas:
-```bash
-a - b - c - d   Rama Principal
-         \\
-           e - f - g Rama de Características
-```
+<pre>
+<font color="red">a</font> - <font color="green">b</font> - <font color="blue">c</font> - <font color="purple">d</font>   Rama Principal
+                 \\
+                     <font color="orange">e</font> - <font color="cyan">f</font> - <font color="magenta">g</font> Rama de Características
+</pre>
 El uso de Git Cherry Pick es bastante sencillo y se ejecuta de la siguiente manera:
 
 Primero, asegúrate de estar en la rama principal empleando el comando:
@@ -726,11 +726,11 @@ Aquí, `HASH` es una referencia al hash o ID del commit que deseas aplicar. Pued
 
 Una vez ejecutado el comando, el historial de Git se verá así:
 
-```bash
-a - b - c - d - f   Rama Principal
+<pre>
+<font color="red">a</font> - <font color="green">b</font> - <font color="blue">c</font> - <font color="purple">d</font> - <font color="cyan">f</font>   Rama Principal
          \\
-           e - f - g Rama de Características
-```
+           <font color="orange">e</font> - <font color="cyan">f</font> - <font color="magenta">g</font> Rama de Características
+</pre>
 
 De esta forma, el commit **‘f’** se ha incorporado correctamente a la rama principal.
 
