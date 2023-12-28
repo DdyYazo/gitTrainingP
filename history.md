@@ -1,6 +1,6 @@
-```Anotation```
 >[!NOTE]
 > Anotación de prueba
+> 
 Esta es una prueba de archivo de texto 
 
 Para subir a un repositorio, 
@@ -14,5 +14,7 @@ Cambio nuevo
 Mi primer cambio desde un colaborador xd
 
 Hago un cambio como colaborador del proyecto Open Source <:
-```
-Main 2
+
+## Prueba de rebase
+
+Main 1Main 2
