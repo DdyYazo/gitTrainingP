@@ -47,7 +47,7 @@ Git es algo así como el `Ctrl+Z` (deshacer) de los programadores, suponiendo qu
     - [Git cherry pick](#git-cherry-pick)
   - [Forks o Bifurcaciones](#forks-o-bifurcaciones)
   - [Trabajando con más de 1 repositorio remoto](#trabajando-con-más-de-1-repositorio-remoto)
-  - [Etiquetas, versiones](#etiquetas-versiones)
+  - [Etiquetas `(tags)`, versiones](#etiquetas-tags-versiones)
   - [Pull request:](#pull-request)
   - [Ignorar archivos para no subirlos al repositorio (.gitignore)](#ignorar-archivos-para-no-subirlos-al-repositorio-gitignore)
   - [Readme.md y markdown](#readmemd-y-markdown)
@@ -58,6 +58,11 @@ Git es algo así como el `Ctrl+Z` (deshacer) de los programadores, suponiendo qu
     - [Listado de elementos en el stash](#listado-de-elementos-en-el-stash)
     - [Crear una rama con el stash](#crear-una-rama-con-el-stash)
     - [Eliminar elementos del stash](#eliminar-elementos-del-stash)
+  - [Git Clean para limpiar el proyecto de archivos no deseados](#git-clean-para-limpiar-el-proyecto-de-archivos-no-deseados)
+    - [Revisar que archivos no tienen seguimiento.](#revisar-que-archivos-no-tienen-seguimiento)
+    - [Eliminar los archivos listados de no seguimiento de manera forzada con el parametro `-f`](#eliminar-los-archivos-listados-de-no-seguimiento-de-manera-forzada-con-el-parametro--f)
+    - [Eliminar además de los archivos los directorios con el parametro `-d`](#eliminar-además-de-los-archivos-los-directorios-con-el-parametro--d)
+    - [Eliminar los archivos ignorardos con el parametro`-x`](#eliminar-los-archivos-ignorardos-con-el-parametro-x)
   - [Remendar un commit](#remendar-un-commit)
   - [Git nunca olvida, `git reflog`](#git-nunca-olvida-git-reflog)
   - [Comandos no documentados](#comandos-no-documentados)
@@ -435,7 +440,7 @@ git pull upstream master
 git push origin master
 ```
 
-## Etiquetas, versiones
+## Etiquetas `(tags)`, versiones
 
 Comandos para trabajar con etiquetas:
 
@@ -622,6 +627,39 @@ Consideraciones:
 - El cambio más reciente (al crear un stash) **SIEMPRE** recibe el valor 0 y los que estaban antes aumentan su valor.
 - Al crear un stash tomará los archivos que han sido modificados y  eliminados. Para que tome un archivo creado es necesario agregarlo al  Staging Area con git add [nombre_archivo] con la intención de que git  tenga un seguimiento de ese archivo, o también utilizando el comando git stash -u (que guardará en el stash los archivos que no estén en el staging).
 - Al aplicar un stash este no se elimina, es buena práctica eliminarlo.
+
+## Git Clean para limpiar el proyecto de archivos no deseados
+
+El comando `clean` **actúa en archivos sin seguimiento**, este tipo de archivos son aquellos que se encuentran en el directorio de trabajo, pero que aún no se han añadido al índice de seguimiento de repositorio con el comando `git add` .
+
+```bash
+ git clean
+```
+
+**La ejecución del comando predeterminado puede producir un error**. La configuración global de Git obliga a usar la opción `force` con el comando para que sea efectivo. Se trata de un importante mecanismo de seguridad ya que este comando no se puede deshacer.
+
+### Revisar que archivos no tienen seguimiento.
+
+```bash
+git clean --dry-run # Muestra qué archivos se eliminarían, pero realmente no los elimina
+```
+
+### Eliminar los archivos listados de no seguimiento de manera forzada con el parametro `-f`
+
+```bash
+git clean -f # Fuerza la eliminación de archivos no rastreados del directorio de trabajo
+```
+### Eliminar además de los archivos los directorios con el parametro `-d`
+
+```bash
+git clean -d # Elimina los directorios no rastreados del directorio de trabajo
+git clean -df # Fuerza la eliminación de directorios no rastreados del directorio de trabajo
+```
+### Eliminar los archivos ignorardos con el parametro`-x`
+
+```bash
+git clean -x # Elimina los archivos no rastreados del directorio de trabajo
+```
 
 ## Remendar un commit
 
