@@ -19,4 +19,6 @@ Hago un cambio como colaborador del proyecto Open Source <:
 
 BugFix 1 => **Creado desde la rama experimental**
 
+BugFix 2 => **Creado desde la rama experimental**
+
 Main 1Main 2
