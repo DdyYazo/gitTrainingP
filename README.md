@@ -46,6 +46,7 @@ Git es algo así como el `Ctrl+Z` (deshacer) de los programadores, suponiendo qu
     - [Git stash](#git-stash)
     - [Git cherry pick](#git-cherry-pick)
   - [Forks o Bifurcaciones](#forks-o-bifurcaciones)
+  - [Cómo se hace un fork remoto desde consola en GitHub](#cómo-se-hace-un-fork-remoto-desde-consola-en-github)
   - [Trabajando con más de 1 repositorio remoto](#trabajando-con-más-de-1-repositorio-remoto)
   - [Etiquetas `(tags)`, versiones](#etiquetas-tags-versiones)
   - [Pull request:](#pull-request)
@@ -323,7 +324,10 @@ git merge --abort # Para abortar el merge que esta en proceso
 git merge --continue # Para continuar con el proceso
 git merge --skip 
 ```
-Por otro lado, `rebase` hace prácticamente lo mismo que `merge`, cambiamos la historia de nuestro proyecto sin crear bifurcaciones del proyecto. Sin embargo Es mejor usar merge, ya que **rebase se considera una mala practica** , asi mismo <u>**este debe realizarse de manera local**</u>.
+> [!WARNING]
+> 
+> Por otro lado, `rebase` hace prácticamente lo mismo que `merge`, cambiamos la historia de nuestro proyecto sin crear bifurcaciones del proyecto. Sin embargo Es mejor usar merge, ya que <u>**rebase se considera una mala practica**</u> , asi mismo <u>**este debe realizarse de manera local**</u>.
+
 ```bash
 git rebase nombre # Especificar el nombre de la rama de donde se esta trayendo el historial
 git rebase --continue # Continúa con el proceso de rebase después de resolver conflictos
@@ -441,6 +445,16 @@ Los forks son importantes porque es la manera en la que funciona el open source,
 
 Al hacer un fork, GitHub sabe que se hizo el fork del proyecto, por lo que se le permite al colaborador hacer pull request desde su repositorio propio.
 
+## Cómo se hace un fork remoto desde consola en GitHub
+
+Antes de hacer un fork primero se clona el repositorio con el proyecto que se genero mediante el fork clonandolo
+
+```bash
+git clone URL_del_repositorio => "HTTPS o SSH"
+```
+
+Al hacer un fork, GitHub sabe que se hizo el fork del proyecto, por lo que se le permite al colaborador hacer **pull request** desde su repositorio propio.
+
 ## Trabajando con más de 1 repositorio remoto
 
 Cuando trabajas en un proyecto que existe en **diferentes repositorios remotos** (normalmente a causa de un **fork**) es muy probable que desees poder **trabajar con ambos repositorios**, para ésto puedes crear un **remoto adicional** desde consola.
@@ -450,10 +464,10 @@ git remote add <nombre_del_remoto> <url_del_remoto>
 ```
 
 ```bash
-git remote upstream https://github.com/freddier/hyperblog
+git remote add upstream https://github.com/freddier/hyperblog
 ```
 
-Al crear un **remoto adicional** podremos, hacer **pull** desde el nuevo **origen** (en caso de tener permisos podremos hacer fetch y push)
+Al crear un **remoto adicional** podremos, hacer **pull** desde el nuevo **origen** (en caso de tener permisos podremos hacer fetch y push), lo cual podremos verificar haciendo un `git remote -v`
 
 ```bash
 git pull <remoto> <rama>
@@ -462,12 +476,25 @@ git pull <remoto> <rama>
 ```bash
 git pull upstream master
 ```
+Ademas, si en la ultima versión del repositorio original existen `tags`, mayormente almacenados en los `releases` de igual forma se podran subir al master del repositorio personal creado
 
 Éste `pull` nos traerá los **cambios del remoto**, por lo que se estará al día en el proyecto, el flujo de trabajo cambia, en adelante se estará trabajando haciendo **pull desde el upstream** y **push al origin** para pasar a hacer **pull request**.
 
 ```bash
 git pull upstream master
 git push origin master
+```
+O tambien se puede hacer un fetch 
+
+```bash
+git fetch upstream
+```
+
+Sin embargo, a pesar de que trae los cambios del **proyecto original** no actualizara el código del proyecto en el que se esta trabajando entonces para ello antes de hacer **push** se debe hacer una fusión de ramas con **merge**
+
+```bash
+git merge upstream/nombre_de_la_rama # "En ese caso la rama master o main"
+=> git merge upstream/master o main
 ```
 
 ## Etiquetas `(tags)`, versiones
