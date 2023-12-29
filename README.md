@@ -68,10 +68,11 @@ Git es algo así como el `Ctrl+Z` (deshacer) de los programadores, suponiendo qu
     - [¿Cómo funciona Git Cherry Pick? Ejemplos](#cómo-funciona-git-cherry-pick-ejemplos)
     - [Usar el parametro `-x` para añadir una referencia al commit original](#usar-el-parametro--x-para-añadir-una-referencia-al-commit-original)
     - [¿Cómo deshacer este comando en caso de conflicto?](#cómo-deshacer-este-comando-en-caso-de-conflicto)
+  - [Git nunca olvida, `git reflog`](#git-nunca-olvida-git-reflog)
   - [Remendar un commit](#remendar-un-commit)
     - [Modificar el commit más reciente y su mensaje en la misma línea.](#modificar-el-commit-más-reciente-y-su-mensaje-en-la-misma-línea)
     - [Modificar el commit sin modificar el mensaje de dicho commit.](#modificar-el-commit-sin-modificar-el-mensaje-de-dicho-commit)
-  - [Git nunca olvida, `git reflog`](#git-nunca-olvida-git-reflog)
+  - [Buscar en archivos y commits de Git con `grep` y `log`](#buscar-en-archivos-y-commits-de-git-con-grep-y-log)
   - [Comandos no documentados](#comandos-no-documentados)
 
 ## Flujo básico de git
@@ -750,41 +751,6 @@ git cherry-pick --abort
 > 
 > Git Cherry Pick es un comando poderoso y conveniente que resulta especialmente útil en ciertas situaciones. Sin embargo, si abusas de él, **podría considerarse una mala práctica en Github**. Se debe utilizar correctamente y comprender sus implicaciones en el historial de cambios.
 
-## Remendar un commit
-
-Puede modificar el commit más reciente (enmendar) en la misma rama ejecutando:
-
-```bash
-git add -A # Para hacer uso de ammend los archivos deben de estar en staging
-git commit --amend # Remendar último commit
-```
-
-Este comando sirve para agregar archivos nuevos o actualizar el commit anterior y no generar commits innecesarios. 
-
-Ademas, se pueden implementar otras funciones con `ammend`
-
-### Modificar el commit más reciente y su mensaje en la misma línea.
-
-```bash
-$ gitcommit --amend -m
-```
-
-Recordar que `-m` permite escribir un mensaje desde la línea de comandos sin tener que abrir un editor.
-
-### Modificar el commit sin modificar el mensaje de dicho commit.
-
-```bash
-$ git commit --amend --no-edit
-```
-
-El indicador `--no-edit` permite hacer correcciones en el código sin modificar el mensaje original.
-
-También es una forma sencilla de **editar o agregar comentarios al commit anterior** porque abrirá la consola para editar el commit anterior.
-
-> [!WARNING]
->
-> Es una **mala práctica** hacer ammend de un commit que ya ha sido **pusheado o pulleado** del repositorio remoto, al momento de hacer ammend con algún `commit` que esté en remoto va a generar un **conflicto** que se va a arreglar haciendo un `commit adicional` y se **perderá el beneficio** del ammend.
-
 ## Git nunca olvida, `git reflog`
 
 Git guarda todos los cambios aunque decidas borrarlos, al borrar un cambio lo que estás haciendo sólo es actualizar la punta del branch, para gestionar éstas puntas existe un mecanismo llamado registros de referencia o `reflogs`.
@@ -818,6 +784,61 @@ Muchos comandos de Git aceptan un parámetro para especificar una referencia o "
   git checkout master
   git merge eff544f # Fusionará en un nuevo commit la historia de master con el momento específico en el que vive eff544f
   ```
+
+## Remendar un commit
+
+Puede modificar el commit más reciente (enmendar) en la misma rama ejecutando:
+
+```bash
+git add -A # Para hacer uso de ammend los archivos deben de estar en staging
+git commit --amend # Remendar último commit
+```
+
+Este comando sirve para agregar archivos nuevos o actualizar el commit anterior y no generar commits innecesarios. 
+
+Ademas, se pueden implementar otras funciones con `ammend`
+
+### Modificar el commit más reciente y su mensaje en la misma línea.
+
+```bash
+$ git commit --amend -m
+```
+
+Recordar que `-m` permite escribir un mensaje desde la línea de comandos sin tener que abrir un editor.
+
+### Modificar el commit sin modificar el mensaje de dicho commit.
+
+```bash
+$ git commit --amend --no-edit
+```
+
+El indicador `--no-edit` permite hacer correcciones en el código sin modificar el mensaje original.
+
+También es una forma sencilla de **editar o agregar comentarios al commit anterior** porque abrirá la consola para editar el commit anterior.
+
+> [!WARNING]
+>
+> Es una **mala práctica** hacer ammend de un commit que ya ha sido **pusheado o pulleado** del repositorio remoto, al momento de hacer ammend con algún `commit` que esté en remoto va a generar un **conflicto** que se va a arreglar haciendo un `commit adicional` y se **perderá el beneficio** del ammend.
+
+## Buscar en archivos y commits de Git con `grep` y `log`
+
+Por ejemplo: ¿cuántas veces en nuestro proyecto utilizamos la palabra color?
+
+Para buscar, empleamos el comando git grep color y nos buscará en todo el proyecto los archivos en donde está la palabra color.
+```bash
+git grep -n color #Nos saldrá un output el cual nos dirá en qué línea está lo que estamos buscando.
+````
+```bash
+git grep -c color #Nos saldrá un output el cual nos dirá cuántas veces se repite esa palabra y en qué archivo.
+```
+Si queremos buscar cuántas veces utilizamos un atributo de HTML lo hacemos con: 
+```bash
+git grep -c "<p>".
+```
+Por otro lado si queremos buscar cuantas veces se la rama cabecera aparece en el historial de commits se puede con el comando:
+```bash
+git log-S “cabecera” #Mostrara cuantas veces use la palabra cabecera en
+```
 
 ## Comandos no documentados
 
