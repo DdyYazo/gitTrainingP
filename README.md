@@ -68,8 +68,9 @@ Git es algo así como el `Ctrl+Z` (deshacer) de los programadores, suponiendo qu
     - [¿Cómo funciona Git Cherry Pick? Ejemplos](#cómo-funciona-git-cherry-pick-ejemplos)
     - [Usar el parametro `-x` para añadir una referencia al commit original](#usar-el-parametro--x-para-añadir-una-referencia-al-commit-original)
     - [¿Cómo deshacer este comando en caso de conflicto?](#cómo-deshacer-este-comando-en-caso-de-conflicto)
-    - [Cherry pick como una mala practica](#cherry-pick-como-una-mala-practica)
   - [Remendar un commit](#remendar-un-commit)
+    - [Modificar el commit más reciente y su mensaje en la misma línea.](#modificar-el-commit-más-reciente-y-su-mensaje-en-la-misma-línea)
+    - [Modificar el commit sin modificar el mensaje de dicho commit.](#modificar-el-commit-sin-modificar-el-mensaje-de-dicho-commit)
   - [Git nunca olvida, `git reflog`](#git-nunca-olvida-git-reflog)
   - [Comandos no documentados](#comandos-no-documentados)
 
@@ -744,9 +745,10 @@ Por suerte, en ese caso, puedes emplear el siguiente comando.
 ```bash
 git cherry-pick --abort
 ```
-
-### Cherry pick como una <u>mala practica</u>
-Git Cherry Pick es un comando poderoso y conveniente que resulta especialmente útil en ciertas situaciones. Sin embargo, si abusas de él, **podría considerarse una mala práctica en Github**. Se debe utilizar correctamente y comprender sus implicaciones en el historial de cambios.
+> [!CAUTION]
+> ### Cherry pick como una <u>mala practica</u>
+> 
+> Git Cherry Pick es un comando poderoso y conveniente que resulta especialmente útil en ciertas situaciones. Sin embargo, si abusas de él, **podría considerarse una mala práctica en Github**. Se debe utilizar correctamente y comprender sus implicaciones en el historial de cambios.
 
 ## Remendar un commit
 
@@ -759,9 +761,29 @@ git commit --amend # Remendar último commit
 
 Este comando sirve para agregar archivos nuevos o actualizar el commit anterior y no generar commits innecesarios. 
 
+Ademas, se pueden implementar otras funciones con `ammend`
+
+### Modificar el commit más reciente y su mensaje en la misma línea.
+
+```bash
+$ gitcommit --amend -m
+```
+
+Recordar que `-m` permite escribir un mensaje desde la línea de comandos sin tener que abrir un editor.
+
+### Modificar el commit sin modificar el mensaje de dicho commit.
+
+```bash
+$ git commit --amend --no-edit
+```
+
+El indicador `--no-edit` permite hacer correcciones en el código sin modificar el mensaje original.
+
 También es una forma sencilla de **editar o agregar comentarios al commit anterior** porque abrirá la consola para editar el commit anterior.
 
-**Nota**: Es una **mala práctica** hacer ammend de un commit que ya ha sido **pusheado o pulleado** del repositorio remoto, al momento de hacer ammend con algún `commit` que esté en remoto va a generar un **conflicto** que se va a arreglar haciendo un `commit adicional` y se **perderá el beneficio** del ammend.
+> [!WARNING]
+>
+> Es una **mala práctica** hacer ammend de un commit que ya ha sido **pusheado o pulleado** del repositorio remoto, al momento de hacer ammend con algún `commit` que esté en remoto va a generar un **conflicto** que se va a arreglar haciendo un `commit adicional` y se **perderá el beneficio** del ammend.
 
 ## Git nunca olvida, `git reflog`
 
