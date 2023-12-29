@@ -74,6 +74,7 @@ Git es algo así como el `Ctrl+Z` (deshacer) de los programadores, suponiendo qu
     - [Modificar el commit sin modificar el mensaje de dicho commit.](#modificar-el-commit-sin-modificar-el-mensaje-de-dicho-commit)
   - [Buscar en archivos y commits de Git con `grep` y `log`](#buscar-en-archivos-y-commits-de-git-con-grep-y-log)
   - [Comandos no documentados](#comandos-no-documentados)
+    - [Ccomandos colaborativos para facilitar el trabajo remoto en GitHub:](#ccomandos-colaborativos-para-facilitar-el-trabajo-remoto-en-github)
 
 ## Flujo básico de git
 
@@ -849,10 +850,22 @@ git config --global alias.platzi "shortlog"
 ```bash
 ssh-keygen -t rsa -b 4096 -C "davbelom@gmail.com"
 ```
+### Ccomandos colaborativos para facilitar el trabajo remoto en GitHub:
+
+```bash
+git shortlog -sn #Muestra cuantos commit han hecho cada miembro del equipo.
+git shortlog -sn --all  #Muestra cuantos commit han hecho cada miembro del equipo, hasta los que han sido eliminados.
+git shortlog -sn --all --no-merge # Muestra cuantos commit ha hecho cada miembro, quitando los eliminados sin los merges.
+git blame ARCHIVO # Muestra quien hizo cada cosa línea por línea.
+git COMANDO --help # Muestra como funciona el comando. como lo puede ser el comando git blame --help
+git blame ARCHIVO -Llinea_inicial,linea_final #Muestra quien hizo cada cosa línea por línea, indicándole desde qué línea ver. Ejemplo -L35,50.
+git branch -r # Se muestran todas las ramas remotas.
+git branch -a # Se muestran todas las ramas, tanto locales como remotas.
+```
 
 > [!NOTE]
-> Esta es una contribución de un repositorio Open Source 
+> Esta es una contribución de un repositorio Open Source
 > 
-> **Gracias por la contribución tan grande para mi repomind !!** 
+> **Ahora servira de guía cuando se presenten dudas !!** 
 
 ![Descripción del GIF](https://media0.giphy.com/headers/GitHub/w8ZJLtJbmuph.gif)
